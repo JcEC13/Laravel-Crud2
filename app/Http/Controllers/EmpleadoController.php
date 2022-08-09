@@ -45,7 +45,8 @@ class EmpleadoController extends Controller
         
         Empleado::insert($datosempleado);
 
-        return response()->json($datosempleado);
+        //return response()->json($datosempleado);
+        return redirect('empleado');
     }
 
     /**
@@ -67,7 +68,7 @@ class EmpleadoController extends Controller
      */
     public function edit(Empleado $empleado)
     {
-        //
+        
     }
 
     /**
@@ -88,8 +89,9 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
+    public function destroy($id)
     {
-        //
+        Empleado::destroy($id);
+        return redirect('empleado');
     }
 }
