@@ -1,3 +1,9 @@
+@if (Session::has('mensaje'))
+    {{Session::get('mensaje')}}
+@endif
+
+<a href="{{url('empleado/create')}}">Registrar nuevo empleado</a>
+
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
@@ -15,13 +21,15 @@
         @foreach ($empleados as $empleado)
             <tr>
                 <td>{{$empleado->id}}</td>
-                <td>{{$empleado->Foto}}</td>
+                <td>
+                    <img src="{{ asset('storage'.'/'.$empleado->Foto)}}" alt="" width="100">
+                </td>
                 <td>{{$empleado->Nombre}}</td>
                 <td>{{$empleado->ApPaterno}}</td>
                 <td>{{$empleado->ApMaterno}}</td>
                 <td>{{$empleado->correo}}</td>
                 <td>
-                    Editar
+                    <a href="{{url('/empleado/'.$empleado->id.'/edit')}}">Editar</a>
                     <form action="{{url('/empleado/'.$empleado->id)}}" method="post">
                         @csrf
                         @method('DELETE')
